@@ -1,0 +1,87 @@
+<link type="text/css" href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link type="text/css" href="../assets/css/resume.min.css" rel="stylesheet">
+<body>
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center form-group" id="product">
+  <div class="w-100">
+      <h2 class="mb-5">product</h2>
+
+      <div>
+          <form autocomplete="on" enctype='multipart/form-data' method="post" id="addProductForm" name="addProductForm">
+
+                  
+                  <mat-form-field>
+                        <mat-label>Customer</mat-label>
+                  <mat-select [(ngModel)]="customer" name="selectCustomerDropDown" (selectionChange)="kfsService.getCustomerList()" >
+                    <!-- <mat-option>
+                        <ngx-mat-select-search  ></ngx-mat-select-search>
+                      </mat-option>  -->
+                      
+                    <mat-option [value] ="customerValue" *ngFor="let customerValue of kfsService.customerList ">{{customerValue.customerName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              <br>
+
+              <label for="productName">Name:</label>
+              <input type="text" class="form-control" [(ngModel)]="productName" name="productName" autofocus>
+
+              <label for="productDescription">Description:</label>
+              <input type="text" class="form-control" [(ngModel)]="productDescription" name="productDescription">
+
+              <label for="productHSNCode">HSN Code:</label>
+              <input type="number" class="form-control" [(ngModel)]="productHSNCode" name="productHSNCode">
+
+              <label for="productUON">UOM:</label>
+              <input type="text" class="form-control" [(ngModel)]="productUON" name="productUON" pattern="[A-Za-z]{3}"
+                     title="product UOM">
+
+              <label for="productQuantity">Quantity:</label>
+              <input type="number" class="form-control" [(ngModel)]="productQuantity" name="productQuantity">
+
+              <label for="productRate">Rate:</label>
+              <input type="text" class="form-control" [(ngModel)]="productRate" name="productRate">
+              
+               <div class="section">
+                 
+              <mat-checkbox class="row" [(ngModel)]="cgst" name="cgst">CGST</mat-checkbox>
+              <mat-checkbox class="row" [(ngModel)]="sgst" name="sgst">SGST</mat-checkbox>
+              <mat-checkbox class="row" [(ngModel)]="igst" name="igst">IGST</mat-checkbox>
+            
+            </div> 
+              <!-- <mat-checkbox>Check me!</mat-checkbox> -->
+
+
+
+              <!-- <label for="CGST">CGST:</label>
+              <input type="number" class="form-control" [(ngModel)]="CGST" name="CGST">
+
+              <label for="SGST">SGST:</label>
+              <input type="number" class="form-control" [(ngModel)]="SGST" name="SGST">
+
+              <label for="IGST">IGST:</label>
+              <input type="number" class="form-control" [(ngModel)]="IGST" name="IGST"> -->
+
+              <!--<br>
+              <div>
+                  <label for="productGST">GST:</label>
+                  <select name="productGST" id="productGST">
+                      <option value="CGST">CGST</option>
+                      <option value="SGST">SGST</option>
+                      <option value="IGST">IGST</option>
+                  </select>
+              </div>-->
+              <!--<br>
+              <div>
+                  <label for="productImage">Image:</label>
+                  <input type="file" class="form-control-file" id="productImage" name="productImage" multiple>
+              </div>-->
+              <br>
+              <input type="button" (click)="createProduct()" class="btn btn-info" value="Add" id="addProductButton">
+          </form>
+      </div>
+
+  </div>
+</section>
+</body>

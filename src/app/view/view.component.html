@@ -1,0 +1,104 @@
+
+<link type="text/css" href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link type="text/css" href="../assets/css/resume.min.css" rel="stylesheet">
+<body>
+    
+
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center " id="view" >
+  <div class="w-100">
+      <h2 class="mb-5">view</h2>
+
+      <div class="dropdown " aria-labelledby="navbarDropdownMenuLink" >
+          <form id="customerList" class="row">
+            
+
+                <div class="col-sm-4">
+                    <mat-form-field>
+                            <mat-label>Customer</mat-label>
+                      <mat-select id="selectCustomerDropDown" name="selectCustomerDropDown" >
+                        <mat-option [value] ="customer" *ngFor="let customer of kfsService.customerList">{{customer.customerName}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-sm-4">
+                  <mat-form-field>
+                      <mat-label>Criteria:</mat-label>
+                <mat-select id="criteria" name="criteriaDropDown" [(value)]="selected" [(ngModel)]="selected" >
+                  <mat-option value="Product"> Product</mat-option>
+                  <mat-option value="Invoice">Invoice</mat-option>
+                </mat-select>
+              </mat-form-field>
+                  </div>
+           
+                  <!-- <span id ="productMenu" style="display:none">
+                  <label for="productDropDown">Product:</label> 
+                  <select id="productDropDown" name="productDropDown" *ngFor="let it of productList">
+                      <option value ="default">{{it}}}</option>
+                  </select> -->
+                  <div class="col-sm-4">
+                  <mat-form-field>
+                        <mat-label>Product</mat-label>
+                  <mat-select id="selectProductDropDown"  name="selectProductDropDown" (click)="getProductList()" (selectionChange)="getProductDetails($event.value)" >
+                    <!-- <mat-option>
+                        <ngx-mat-select-search  ></ngx-mat-select-search>
+                      </mat-option>  -->
+                      
+                    <mat-option [value] ="product" *ngFor="let product of productList">{{product.productName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+                
+              
+          </form>
+          <!--<form id="productList">
+              <br>-->
+
+         <!-- </form>-->
+          <form class="row-auto">
+              <div id ="productDetails" >
+                  <table id="productTable" name = "productTable" class="table">
+                    
+                      <thead>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>HSNCode</th>
+                      <th>UON</th>
+                      <th>Quantity</th>
+                      <th>Rate</th>
+                      <th>CGST</th>
+                      <th>SGST</th>
+                      <th>IGST</th>
+                      <th>Invoice</th>
+                    </thead>
+
+                    <tbody>
+                            <tr *ngIf="productDetails">
+                              <td>{{ productDetails.productName }}</td>
+                              <td>{{ productDetails.productDescription }}</td>
+                              <td>{{ productDetails.productHSNCode }}</td>
+                              <td>{{ productDetails.productUON }}</td>
+                              <td contenteditable="true">{{productDetails.productQuantity}}</td>
+                              <td contenteditable="true">{{ productDetails.productRate }}</td>
+                              <td>{{ productDetails.cgst }}</td>
+                              <td>{{ productDetails.sgst }}</td>
+                              <td>{{ productDetails.igst }}</td>
+                              <td><input type="button" name="Download" value="Invoice" /></td>
+                            </tr>
+                          </tbody>
+                  </table>
+
+
+              </div>
+          </form>
+
+      </div>
+  </div>
+</section>
+
+</body>
+
