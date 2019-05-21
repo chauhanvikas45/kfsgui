@@ -87,7 +87,7 @@
                               <td>{{ productDetails.cgst }}</td>
                               <td>{{ productDetails.sgst }}</td>
                               <td>{{ productDetails.igst }}</td>
-                              <td><input type="button" name="Download" value="Invoice" /></td>
+                              <td><input type="button" name="Download" value="Invoice" (click)="generateInvoice(productDetails)"/></td>
                             </tr>
                           </tbody>
                   </table>

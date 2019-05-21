@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KfsServiceService } from '../kfs-service.service';
 import { ProductComponent } from '../product/product.component';
 import { Product } from 'src/domain/product';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view',
@@ -14,7 +15,7 @@ export class ViewComponent implements OnInit {
   customerList:[];
   productDetails :{};
   productName:String;
-  constructor(private kfsService:KfsServiceService) { }
+  constructor(private kfsService:KfsServiceService,private toasterService:ToastrService) { }
 
   ngOnInit() {
     //this.getProductList();
@@ -36,6 +37,23 @@ export class ViewComponent implements OnInit {
   }
   }
 
+  generateInvoice(productDetails){
+    this.productDetails = productDetails;
+    this.kfsService.loading=true;
+    this.kfsService.postService("/generateInvoice",productDetails).subscribe(
+      
+      response => (data:{})=>{
+        console.log(data);
+        this.kfsService.loading=false;
+        },
+      error =>{
+        this.toasterService.error("Error in sending Request")
+        this.kfsService.loading=false;
+      } )
+    
+
+
+  }
 
   getProductDetails(product: Product){
     // this.kfsService.loading=true;

@@ -14,6 +14,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { InvoiceComponent } from './invoice/invoice.component';
 const appRoutes:Routes=[
   {path:'',redirectTo:"/aboutUs",pathMatch:'full'},
   {
@@ -26,6 +27,8 @@ const appRoutes:Routes=[
     path:'product',component:ProductComponent
   },{
     path:'view',component:ViewComponent
+  },{
+    path:'invoice',component:InvoiceComponent
   }
 ];
 
@@ -36,7 +39,8 @@ const appRoutes:Routes=[
     ProductComponent,
     LeftNavBarComponent,
     DescriptionComponent,
-    ViewComponent
+    ViewComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,
