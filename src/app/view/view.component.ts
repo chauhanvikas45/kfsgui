@@ -3,7 +3,8 @@ import { KfsServiceService } from '../kfs-service.service';
 import { ProductComponent } from '../product/product.component';
 import { Product } from 'src/domain/product';
 import { ToastrService } from 'ngx-toastr';
-
+import { saveAs } from 'file-saver';
+import { error } from '@angular/compiler/src/util';
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -40,21 +41,29 @@ export class ViewComponent implements OnInit {
   generateInvoice(productDetails){
     this.productDetails = productDetails;
     this.kfsService.loading=true;
-    this.kfsService.postService("/generateInvoice",productDetails).subscribe(
+    this.kfsService.export("/generateInvoice",productDetails).subscribe(
       
-      response => (data:{})=>{
-        console.log(data);
-        this.kfsService.loading=false;
-        },
-      error =>{
-        this.toasterService.error("Error in sending Request")
-        this.kfsService.loading=false;
-      } )
-    
-
+    //   response => (
+    //     data:{})=>{
+    //     console.log(data);
+    //     saveAs(data, `pdf report.pdf`)
+    //     this.kfsService.loading=false;
+    //     },
+    //   error =>{
+    //     this.toasterService.error("Error in sending Request")
+    //     this.kfsService.loading=false;
+    //   } )
+    data=>{ saveAs(data, `html invoice.html`)
+    this.kfsService.loading=false;}
+    ,
+    error =>{
+      this.toasterService.error("Error in sending Request")
+      this.kfsService.loading=false;
+    }
+    )
 
   }
-
+  
   getProductDetails(product: Product){
     // this.kfsService.loading=true;
     

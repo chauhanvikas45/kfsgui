@@ -41,4 +41,9 @@ getCustomerList(){
   })
     
 }
+
+export(resource:String,data:any) {
+    return this.httpClient.post(`${this.apiURL}/${resource}`, data,
+        {responseType: 'blob'});
+}
  }
